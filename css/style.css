@@ -820,6 +820,7 @@ img.delivery-advantage {
 	    -ms-flex-direction: column;
 	        flex-direction: column;
 	row-gap: 10px;
+	position: relative;
 }
 
 form > button.form-button {
@@ -2290,10 +2291,6 @@ a.footer-phone-number {
 
 .input-keybord:hover, .input-keybord:active, .input-keybord:focus {
 	border-color: #BCCBFF;
-}
-
-.input-keybord:invalid {
-	border-color: #FF6363;
 }
 
 .input-keybord:disabled {
