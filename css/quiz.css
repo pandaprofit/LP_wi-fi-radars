@@ -1,0 +1,120 @@
+.quiz {
+    margin: 0 auto;
+		width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.quiz-slide {
+    display: none;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.quiz-slide h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.quiz-options {
+    margin: 20px 0;
+}
+
+.quiz-options label {
+    display: block;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-options label:hover {
+    background: #e9ecef;
+}
+
+.quiz-options input[type="radio"] {
+    margin-right: 10px;
+}
+
+.quiz-form input[type="text"],
+.quiz-form input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.quiz-form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.progress {
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #6386FF;
+    transition: width 0.3s ease;
+}
+
+button.next,
+button.back {
+    padding: 12px 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.next {
+    background: #6386FF;
+    color: white;
+}
+
+button.next:hover {
+    background: #4b6cd9;
+}
+
+button.next:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+button.back {
+    background: #fff;
+    color: #6386FF;
+    border: 1px solid #6386FF;
+}
+
+button.back:hover {
+    background: #f8f9fa;
+}
+
+.quiz-form label {
+    display: block;
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+/* Анимация перехода между слайдами */
+.quiz-slide {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.quiz-slide.active {
+    display: block;
+    opacity: 1;
+}

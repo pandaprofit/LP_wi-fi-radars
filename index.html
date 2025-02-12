@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
 	<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/form-steps.css">
 	<title>Wi-Fi Radars</title>
 </head>
 
@@ -20,8 +21,7 @@
 					<img src="img/svg/logo.svg" alt="Логототип Mansio IT">
 				</a>
 				<nav>
-					<button class="nav-toggle nav-toggle--opened" type="button"><span
-							class="nav-burger"></span></button>
+					<button class="nav-toggle nav-toggle--opened" type="button"><span class="nav-burger"></span></button>
 					<div class="nav-wrapper nav-toggle--opened">
 						<ul class="nav-list">
 							<li class="nav-list-point"><a href="#" class="services">Услуги</a></li>
@@ -47,25 +47,21 @@
 						<h1>Стоимость клика <span>растет,</span> количество лидов падает?</h1>
 						<p class="new-technologies">Догоняй рекламой тех, кто был рядом</p>
 						<button class="free-consultation">Получить бесплатную консультацию</button>
-						<button class="for-me white-button"><span><img src="img/svg/question-mark-white.svg"
-									alt=""></span> Подойдет
+						<button class="for-me white-button"><span><img src="img/svg/question-mark-white.svg" alt=""></span> Подойдет
 							ли для моего
 							бизнеса?</button>
 					</div>
 					<picture>
 						<source srcset="img/webp/main-shop-1440.webp 1x, img/webp/main-shop-1440_2x.webp 2x"
-							data-srcset="img/placeholders/dummy-image-818x615.gif" media="(min-width: 1300px)">
-						<source srcset="img/main-shop-1440.jpg 1x, img/main-shop-1440_2x.jpg 2x"
-							media="(min-width: 1300px)">
+										data-srcset="img/placeholders/dummy-image-818x615.gif" media="(min-width: 1300px)">
+						<source srcset="img/main-shop-1440.jpg 1x, img/main-shop-1440_2x.jpg 2x" media="(min-width: 1300px)">
 						<source srcset="img/webp/main-shop-768.webp 1x, img/webp/main-shop-768_2x.webp 2x"
-							data-srcset="img/placeholders/dummy-image-295x222.gif" media="(min-width: 740px)">
-						<source srcset="img/main-shop-768.jpg 1x, img/main-shop-768_2x.jpg 2x"
-							media="(min-width: 740px)">
+										data-srcset="img/placeholders/dummy-image-295x222.gif" media="(min-width: 740px)">
+						<source srcset="img/main-shop-768.jpg 1x, img/main-shop-768_2x.jpg 2x" media="(min-width: 740px)">
 						<source srcset="img/webp/main-shop-360.webp 1x, img/webp/main-shop-360_2x.webp 2x"
-							media="(max-width:739px)">
-						<img class="lazyload" src="img/main-shop-360.jpg"
-							data-src="img/placeholders/dummy-image-4x3.gif" srcset="img/main-shop-360_2x.jpg 2x"
-							alt="Главное изображение сайта">
+										media="(max-width:739px)">
+						<img class="lazyload" src="img/main-shop-360.jpg" data-src="img/placeholders/dummy-image-4x3.gif"
+								 srcset="img/main-shop-360_2x.jpg 2x" alt="Главное изображение сайта">
 					</picture>
 				</div>
 			</section>
@@ -117,14 +113,13 @@
 					</li>
 				</ul>
 				<picture>
-					<source srcset="img/wifi-radar-what.jpg 1x, img/wifi-radar-what_2x.jpg 2x"
-						media="(min-width: 1300px)">
+					<source srcset="img/wifi-radar-what.jpg 1x, img/wifi-radar-what_2x.jpg 2x" media="(min-width: 1300px)">
 					<source srcset="img/webp/wifi-radar-what.webp 1x, img/webp/wifi-radar-what_2x.webp 2x"
-						media="(min-width: 1300px)">
+									media="(min-width: 1300px)">
 					<source srcset="img/webp/wifi-radar-768.webp 1x, img/webp/wifi-radar-768_2x.webp 2x"
-						media="(max-width:1299px)">
-					<img class=" lazyload" data-src="img/placeholders/dummy-image-354x175.gif"
-						src="img/wifi-radar-768.jpg" srcset="img/wifi-radar-768_2x.jpg 2x" alt="Wi-Fi радар">
+									media="(max-width:1299px)">
+					<img class=" lazyload" data-src="img/placeholders/dummy-image-354x175.gif" src="img/wifi-radar-768.jpg"
+							 srcset="img/wifi-radar-768_2x.jpg 2x" alt="Wi-Fi радар">
 				</picture>
 			</section>
 			<section class="four-questions">
@@ -152,16 +147,157 @@
 						</div>
 					</div>
 					<div class="questions-quiz">
+						<div class="quiz-start">
+							<h3>Узнайте, подойдут ли Wi-Fi радары для вашего бизнеса</h3>
+							<button class="start-quiz-button blue-button">Начать</button>
+						</div>
+						<div class="quiz" style="display: none;">
+							<div class="progress">
+								<div class="progress-bar"></div>
+							</div>
+							<div class="step-counter">Шаг <span class="current-step">1</span> из <span class="total-steps">5</span>
+							</div>
 
+							<!-- Шаг 1: Тип бизнеса -->
+							<div class="quiz-slide" data-step="1">
+								<h3>Какой у вас тип бизнеса?</h3>
+								<div class="quiz-options">
+									<label>
+										<input type="radio" name="business_type" value="retail">
+										Розничная торговля
+									</label>
+									<label>
+										<input type="radio" name="business_type" value="service">
+										Сфера услуг
+									</label>
+									<label>
+										<input type="radio" name="business_type" value="restaurant">
+										Ресторанный бизнес
+									</label>
+									<label>
+										<input type="radio" name="business_type" value="other">
+										Другое
+									</label>
+								</div>
+								<div class="quiz-navigation">
+									<button type="button" class="next" disabled>Далее</button>
+								</div>
+							</div>
+
+							<!-- Шаг 2: Сфера деятельности -->
+							<div class="quiz-slide" data-step="2">
+								<h3>Выберите сферу деятельности</h3>
+								<div class="quiz-options">
+									<label>
+										<input type="radio" name="business_sphere" value="food">
+										Продукты питания
+									</label>
+									<label>
+										<input type="radio" name="business_sphere" value="clothes">
+										Одежда и обувь
+									</label>
+									<label>
+										<input type="radio" name="business_sphere" value="beauty">
+										Красота и здоровье
+									</label>
+									<label>
+										<input type="radio" name="business_sphere" value="other">
+										Другое
+									</label>
+								</div>
+								<div class="quiz-navigation">
+									<button type="button" class="back">Назад</button>
+									<button type="button" class="next" disabled>Далее</button>
+								</div>
+							</div>
+
+							<!-- Шаг 3: Количество локаций -->
+							<div class="quiz-slide" data-step="3">
+								<h3>Сколько у вас локаций?</h3>
+								<div class="quiz-options">
+									<label>
+										<input type="radio" name="locations" value="1">
+										1 локация
+									</label>
+									<label>
+										<input type="radio" name="locations" value="2-5">
+										2-5 локаций
+									</label>
+									<label>
+										<input type="radio" name="locations" value="6-10">
+										6-10 локаций
+									</label>
+									<label>
+										<input type="radio" name="locations" value="more">
+										Более 10 локаций
+									</label>
+								</div>
+								<div class="quiz-navigation">
+									<button type="button" class="back">Назад</button>
+									<button type="button" class="next" disabled>Далее</button>
+								</div>
+							</div>
+
+							<!-- Шаг 4: Средний чек -->
+							<div class="quiz-slide" data-step="4">
+								<h3>Какой у вас средний чек?</h3>
+								<div class="quiz-options">
+									<label>
+										<input type="radio" name="average_check" value="less-1000">
+										До 1000 ₽
+									</label>
+									<label>
+										<input type="radio" name="average_check" value="1000-3000">
+										1000-3000 ₽
+									</label>
+									<label>
+										<input type="radio" name="average_check" value="3000-5000">
+										3000-5000 ₽
+									</label>
+									<label>
+										<input type="radio" name="average_check" value="more-5000">
+										Более 5000 ₽
+									</label>
+								</div>
+								<div class="quiz-navigation">
+									<button type="button" class="back">Назад</button>
+									<button type="button" class="next" disabled>Далее</button>
+								</div>
+							</div>
+
+							<!-- Шаг 5: Контактные данные -->
+							<div class="quiz-slide" data-step="5">
+								<h3>Оставьте ваши контактные данные</h3>
+								<form class="quiz-form">
+									<div class="form-group">
+										<label for="name">Ваше имя</label>
+										<input type="text" id="name" name="name" required>
+									</div>
+									<div class="form-group">
+										<label for="phone">Ваш телефон</label>
+										<input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+									</div>
+									<div class="form-group checkbox">
+										<label>
+											<input type="checkbox" name="agreement" required>
+											Я согласен на обработку персональных данных
+										</label>
+									</div>
+									<div class="quiz-navigation">
+										<button type="button" class="back">Назад</button>
+										<button type="submit" class="submit" disabled>Отправить</button>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 			<section class="using-radars">
 				<picture>
-					<source srcset="img/webp/coffee-machine.webp 1x, img/webp/coffee-machine_2x.webp 2x"
-						media="(min-width:0)">
-					<img class="lazyload" data-src="img/placeholders/dummy-image-486x561.gif"
-						src="img/coffee-machine.jpg" srcset="img/coffee-machine_2x.jpg 2x" alt="Кофе-машина">
+					<source srcset="img/webp/coffee-machine.webp 1x, img/webp/coffee-machine_2x.webp 2x" media="(min-width:0)">
+					<img class="lazyload" data-src="img/placeholders/dummy-image-486x561.gif" src="img/coffee-machine.jpg"
+							 srcset="img/coffee-machine_2x.jpg 2x" alt="Кофе-машина">
 				</picture>
 				<div class="using-radars-cont">
 					<h2>С помощью <span>Wi-Fi радара</span> мы сделали это</h2>
@@ -184,7 +320,7 @@
 						</div>
 						<button class="card-button blue-button" data-modal="feedback">Хочу так же!</button>
 						<button class="about-case white-button"><span><img src="img/svg/question-mark-white.svg"
-									alt=""></span>Подробнее о
+										 alt=""></span>Подробнее о
 							кейсе</button>
 					</div>
 				</div>
@@ -201,15 +337,15 @@
 				</div>
 				<picture>
 					<source srcset="img/webp/statistic.webp 1x, img/webp/statistic_2x.webp 2x" media="(min-width:0)">
-					<img class="lazyload img-statistic" data-src="img/placeholders/dummy-image-105x68.gif"
-						src="img/statistic.jpg" srcset="img/statistic_2x.jpg 2x" alt="Статистика">
+					<img class="lazyload img-statistic" data-src="img/placeholders/dummy-image-105x68.gif" src="img/statistic.jpg"
+							 srcset="img/statistic_2x.jpg 2x" alt="Статистика">
 				</picture>
 			</section>
 			<section class="ideal-audience">
 				<picture>
 					<source srcset="img/webp/laptop.webp 1x, img/webp/laptop_2x.webp 2x" media="(min-width:0)">
 					<img class="lazyload" data-src="img/placeholders/dummy-image-725x431.gif" src="img/laptop.jpg"
-						srcset="img/laptop_2x.jpg 2x" alt="Ноутбук с изображением сайта">
+							 srcset="img/laptop_2x.jpg 2x" alt="Ноутбук с изображением сайта">
 				</picture>
 				<div class="ideal-audience-cont">
 					<h2>Идеальная аудитория уже у вас в личном кабинете</h2>
@@ -254,7 +390,7 @@
 						<img src="img/svg/target.svg" alt="">
 						<div class="audience-discription advantage-discription">
 							<h3 class="audience-advantage">Экономия бюджета на рекламу</h3>
-							<p>Реклама, запущенная на “горячую” аудиторию точно бьет в цель и закрывает потребности
+							<p>Реклама, запущенная на "горячую" аудиторию точно бьет в цель и закрывает потребности
 								аудитории. Благодаря этому она приносит больше продаж</p>
 						</div>
 					</div>
@@ -304,7 +440,7 @@
 					<form action="#">
 						<input class="input-keybord" type="text" name="username" id="input-username" placeholder="Имя">
 						<input class="input-keybord" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-							id="input-telephone" placeholder="Телефон" maxlength="10">
+									 id="input-telephone" placeholder="Телефон" maxlength="10">
 						<div class="input-checkbox">
 							<label>
 								<input class="checkbox-input visually-hidden" type="checkbox">
@@ -338,10 +474,9 @@
 					<div class="slide">
 						<img class="slide-img" src="img/svg/slide2.svg" alt="">
 						<picture>
-							<source srcset="img/webp/wifi-zone.webp 1x, img/webp/wifi-zone_2x.webp 2x"
-								media="(min-width:0)">
+							<source srcset="img/webp/wifi-zone.webp 1x, img/webp/wifi-zone_2x.webp 2x" media="(min-width:0)">
 							<img class="content-img lazyload" data-src="img/placeholders/dummy-image-205x163.gif"
-								src="img/wifi-zone.jpg" srcset="img/wifi-zone_2x.jpg 2x" alt="Устройство для Wi-Fi зон">
+									 src="img/wifi-zone.jpg" srcset="img/wifi-zone_2x.jpg 2x" alt="Устройство для Wi-Fi зон">
 						</picture>
 						<ul>
 							<li>пункт 1</li>
@@ -354,10 +489,9 @@
 					<div class="slide">
 						<img class="slide-img" src="img/svg/slide1.svg" alt="">
 						<picture>
-							<source srcset="img/webp/sms-radar.webp 1x, img/webp/sms-radar_2x.webp 2x"
-								media="(min-width:0)">
+							<source srcset="img/webp/sms-radar.webp 1x, img/webp/sms-radar_2x.webp 2x" media="(min-width:0)">
 							<img class="content-img lazyload" data-src="img/placeholders/dummy-image-205x163.gif"
-								src="img/sms-radar.jpg" srcset="img/sms-radar_2x.jpg 2x" alt="СМС-радар">
+									 src="img/sms-radar.jpg" srcset="img/sms-radar_2x.jpg 2x" alt="СМС-радар">
 						</picture>
 						<ul>
 							<li>пункт 1</li>
@@ -370,10 +504,9 @@
 					<div class="slide">
 						<img class="slide-img" src="img/svg/slide3.svg" alt="">
 						<picture>
-							<source srcset="img/webp/wifi-radar.webp 1x, img/webp/wifi-radar_2x.webp 2x"
-								media="(min-width:0)">
+							<source srcset="img/webp/wifi-radar.webp 1x, img/webp/wifi-radar_2x.webp 2x" media="(min-width:0)">
 							<img class="content-img lazyload" data-src="img/placeholders/dummy-image-205x163.gif"
-								src="img/wifi-radar.jpg" srcset="img/wifi-radar_2x.jpg 2x" alt="Wi-Fi радар">
+									 src="img/wifi-radar.jpg" srcset="img/wifi-radar_2x.jpg 2x" alt="Wi-Fi радар">
 						</picture>
 						<ul>
 							<li>пункт 1</li>
@@ -425,10 +558,9 @@
 				<h2>Арендуйте Wi-Fi радар для вашего бизнеса!</h2>
 				<div class="rent-form">
 					<form action="#">
-						<input class="input-keybord" type="text" name="username" id="input-username-last"
-							placeholder="Имя">
+						<input class="input-keybord" type="text" name="username" id="input-username-last" placeholder="Имя">
 						<input class="input-keybord" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-							id="input-telephone-last" placeholder="Телефон" maxlength="10">
+									 id="input-telephone-last" placeholder="Телефон" maxlength="10">
 						<div class="last-checkbox input-checkbox">
 							<label>
 								<input class="checkbox-input visually-hidden" type="checkbox">
@@ -469,10 +601,9 @@
 				<div class="modal__content">
 					<picture class="modal-case-img">
 						<source srcset="img/webp/coffee-machine-modal.webp 1x, img/webp/coffee-machine-modal_2x.webp 2x"
-							media="(min-width:0)">
-						<img class="lazyload" data-src="img/placeholders/dummy-image-491x662.gif"
-							src="img/coffee-machine-modal.jpg" srcset="img/coffee-machine-modal_2x.jpg 2x"
-							alt="Кофе-машина">
+										media="(min-width:0)">
+						<img class="lazyload" data-src="img/placeholders/dummy-image-491x662.gif" src="img/coffee-machine-modal.jpg"
+								 srcset="img/coffee-machine-modal_2x.jpg 2x" alt="Кофе-машина">
 					</picture>
 					<div class="modal-case-text">
 						<p class="card-title">Coffe House</p>
@@ -521,10 +652,9 @@
 				<div class="modal__content">
 					<picture class="modal-wi-fi-zone-img">
 						<source srcset="img/webp/wifi-zone-modal.webp 1x, img/webp/wifi-zone-modal_2x.webp 2x"
-							media="(min-width:0)">
-						<img class="lazyload" data-src="img/placeholders/dummy-image-300x331.gif"
-							src="img/wifi-zone-modal.jpg" srcset="img/wifi-zone-modal_2x.jpg 2x"
-							alt="Устройство для Wi-Fi зон">
+										media="(min-width:0)">
+						<img class="lazyload" data-src="img/placeholders/dummy-image-300x331.gif" src="img/wifi-zone-modal.jpg"
+								 srcset="img/wifi-zone-modal_2x.jpg 2x" alt="Устройство для Wi-Fi зон">
 					</picture>
 					<div class="modal-wi-fi-zone-text">
 						<h2>Wi-Fi Зоны</h2>
@@ -560,10 +690,9 @@
 					<div class="form-wrapper">
 						<h2 class="modal-audience-title">Хотите купить аудиторию</h2>
 						<form action="#">
-							<input class="input-keybord" type="text" name="username" id="input-username"
-								placeholder="Имя">
+							<input class="input-keybord" type="text" name="username" id="input-username" placeholder="Имя">
 							<input class="input-keybord" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-								id="input-telephone" placeholder="Телефон" maxlength="10">
+										 id="input-telephone" placeholder="Телефон" maxlength="10">
 							<div class="input-checkbox">
 								<label>
 									<input class="checkbox-input visually-hidden" type="checkbox">
@@ -594,4 +723,5 @@
 	<script src="js/main.min.js"></script>
 	<script src="js/lazyload.js"></script>
 	<script src="js/glide.js"></script>
+	<script src="dist/bundle.js"></script>
 </body>
