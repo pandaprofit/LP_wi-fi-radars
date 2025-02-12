@@ -2431,3 +2431,7 @@ button {
     transform: translateY(1px);
     box-shadow: 0 2px 8px rgba(99, 134, 255, 0.2);
 }
+
+.contact-form {
+  position: relative;
+}

@@ -31,38 +31,148 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
 
             try {
+                const messageData = {
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: `🎯 Новая заявка с сайта!\n\n👤 Имя: ${formData.get('username')}\n📱 Телефон: ${formData.get('phone')}\n\n📅 Дата: ${new Date().toLocaleString('ru-RU')}`
+                };
+
                 const response = await fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: `🎯 Новая заявка с сайта!\n\n👤 Имя: ${formData.get('username')}\n📱 Телефон: ${formData.get('phone')}\n\n📅 Дата: ${new Date().toLocaleString('ru-RU')}`
-                    })
+                    body: JSON.stringify(messageData)
                 });
 
+                const responseData = await response.json();
+
                 if (!response.ok) {
-                    throw new Error('Ошибка отправки сообщения');
+                    throw new Error(responseData.description || 'Ошибка отправки сообщения');
                 }
 
                 // Показываем сообщение об успехе
                 if (successOverlay) {
                     successOverlay.style.display = 'flex';
                     successOverlay.classList.add('active');
+                } else {
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'form-success-message';
+                    successMessage.innerHTML = `
+                        <div class="success-message">
+                            <h3>Спасибо за вашу заявку!</h3>
+                            <p>Мы свяжемся с вами в ближайшее время.</p>
+                        </div>
+                    `;
+                    form.appendChild(successMessage);
                 }
                 form.reset();
 
             } catch (error) {
-                console.error('Ошибка:', error);
-                showError(form, 'Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+                // Создаем контейнер для ошибки, если его нет
+                let errorContainer = form.querySelector('.form-error-container');
+                if (!errorContainer) {
+                    errorContainer = document.createElement('div');
+                    errorContainer.className = 'form-error-container';
+                    form.insertBefore(errorContainer, submitButton);
+                }
+
+                // Показываем ошибку
+                errorContainer.innerHTML = `
+                    <div class="form-error active" style="display: block; margin: 10px 0; padding: 10px; background-color: #ffebee; color: #f44336; border-radius: 4px;">
+                        ${error.message || 'Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.'}
+                    </div>
+                `;
+
+                // Удаляем сообщение об ошибке через 5 секунд
+                setTimeout(() => {
+                    errorContainer.innerHTML = '';
+                }, 5000);
+
             } finally {
                 form.classList.remove('form-loading');
                 submitButton.disabled = false;
             }
         });
     });
+
+    // Обработчик для полей ввода телефона
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+    phoneInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            if (!input.value) {
+                input.value = '+7 (';
+            }
+        });
+
+        input.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+
+            if (value.startsWith('7')) {
+                value = value.slice(1);
+            }
+
+            value = value.slice(0, 10);
+
+            let result = '+7 (';
+
+            if (value.length > 0) {
+                result += value.slice(0, 3);
+            }
+            if (value.length > 3) {
+                result += ') ' + value.slice(3, 6);
+            }
+            if (value.length > 6) {
+                result += ' ' + value.slice(6, 8);
+            }
+            if (value.length > 8) {
+                result += '-' + value.slice(8, 10);
+            }
+
+            e.target.value = result;
+
+            // Показываем сколько цифр осталось ввести
+            const errorDiv = input.nextElementSibling?.classList.contains('form-error')
+                ? input.nextElementSibling
+                : createErrorDiv(input);
+
+            const digitsEntered = value.length;
+            if (digitsEntered > 0 && digitsEntered < 10) {
+                errorDiv.textContent = `Введите ещё ${10 - digitsEntered} цифр`;
+                errorDiv.classList.add('active');
+                input.classList.add('invalid');
+            } else if (digitsEntered === 10) {
+                errorDiv.classList.remove('active');
+                input.classList.remove('invalid');
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && input.value.length <= 4) {
+                e.preventDefault();
+            }
+        });
+    });
 });
+
+function validateForm(form) {
+    let isValid = true;
+
+    // Валидация текстовых полей и телефона
+    const textInputs = form.querySelectorAll('input[type="text"], input[type="tel"]');
+    textInputs.forEach(input => {
+        if (!validateInput(input)) {
+            isValid = false;
+        }
+    });
+
+    // Валидация чекбокса
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    if (checkbox && !validateCheckbox(checkbox)) {
+        isValid = false;
+    }
+
+    return isValid;
+}
 
 function validateInput(input) {
     const errorDiv = input.nextElementSibling?.classList.contains('form-error')
@@ -87,7 +197,7 @@ function validateInput(input) {
             showInputError(input, errorDiv, 'Пожалуйста, введите номер телефона');
             return false;
         }
-        if (phoneValue.length !== 10) {
+        if (phoneValue.length !== 11) {
             showInputError(input, errorDiv, 'Номер телефона должен содержать 10 цифр');
             return false;
         }
@@ -112,26 +222,6 @@ function validateCheckbox(checkbox) {
     }
 
     return true;
-}
-
-function validateForm(form) {
-    let isValid = true;
-
-    // Валидация текстовых полей и телефона
-    const textInputs = form.querySelectorAll('input[type="text"], input[type="tel"]');
-    textInputs.forEach(input => {
-        if (!validateInput(input)) {
-            isValid = false;
-        }
-    });
-
-    // Валидация чекбокса
-    const checkbox = form.querySelector('input[type="checkbox"]');
-    if (checkbox && !validateCheckbox(checkbox)) {
-        isValid = false;
-    }
-
-    return isValid;
 }
 
 function createErrorDiv(container) {
@@ -168,31 +258,22 @@ function closeSuccessMessage(button) {
     }
 }
 
-// Валидация телефона
-const phoneInputs = document.querySelectorAll('input[type="tel"]');
-phoneInputs.forEach(input => {
-    input.addEventListener('input', (e) => {
-        // Удаляем все нецифровые символы
-        let value = e.target.value.replace(/\D/g, '');
+// Функция форматирования телефонного номера (можно удалить, так как теперь форматирование происходит внутри обработчика input)
+function formatPhoneNumber(value) {
+    let digits = value.replace(/\D/g, '');
+    if (digits.startsWith('7')) {
+        digits = digits.substring(1);
+    }
 
-        // Ограничиваем длину до 10 цифр
-        if (value.length > 10) {
-            value = value.slice(0, 10);
-        }
+    digits = digits.substring(0, 10);
 
-        // Добавляем подсказку о формате
-        const errorDiv = input.nextElementSibling?.classList.contains('form-error')
-            ? input.nextElementSibling
-            : createErrorDiv(input);
+    let result = '+7 (';
+    for (let i = 0; i < digits.length; i++) {
+        if (i === 3) result += ') ';
+        else if (i === 6) result += ' ';
+        else if (i === 8) result += '-';
+        result += digits[i];
+    }
 
-        if (value.length > 0 && value.length < 10) {
-            errorDiv.textContent = `Введите еще ${10 - value.length} цифр`;
-            errorDiv.classList.add('active');
-        } else {
-            errorDiv.classList.remove('active');
-        }
-
-        // Обновляем значение поля
-        e.target.value = value;
-    });
-});
+    return result;
+}
